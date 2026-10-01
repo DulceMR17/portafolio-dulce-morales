@@ -6,761 +6,13 @@
 <meta name="description" content="Dulce Alexandra Morales Ramírez - Web Developer & SOC Analyst. Construyo software seguro y funcional." />
 <meta name="theme-color" content="#050505" />
 <title>Dulce Morales</title>
-
 <!-- ===================== GOOGLE FONTS ===================== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- Oswald: Headings condensados potentes | Inter: Cuerpo limpio y forzudo -->
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-<style>
-/* ===================== ROOT VARIABLES ===================== */
-:root {
-    --bg-dominant: #050505;       /* Pure Black */
-    --surface-1: #0D0D0D;         /* Dark Gray Canvas */
-    --surface-2: #161616;         /* Card Background */
-    --surface-3: #222222;         /* Borders/Hover */
-    --accent-neon: #ff0000;       /* Neon Orange */
-    --accent-silver: #E0E0E0;     /* Metallic Silver */
-    --text-primary: #F5F5F5;
-    --text-muted: #888888;
-    --text-dim: #555555;
-    --transition: all 0.2s ease-in-out;
-    --font-heading: 'Oswald', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-}
-
-/* ===================== RESET ===================== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-    background-color: var(--bg-dominant);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    line-height: 1.5;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 69, 0, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 69, 0, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-}
-
-img { max-width: 100%; display: block; filter: grayscale(100%) contrast(115%) brightness(85%); }
-a { color: inherit; text-decoration: none; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
-
-/* ===================== TYPOGRAPHY & UTILS ===================== */
-h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; }
-.mono { font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.05em; }
-.text-neon { color: var(--accent-neon); }
-.text-silver { color: var(--accent-silver); }
-.text-muted { color: var(--text-muted); }
-
-.container {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 32px;
-    position: relative;
-    z-index: 1;
-}
-
-main { padding-top: 70px; flex: 1 0 auto; }
-
-.section-header {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 40px;
-    border-left: 4px solid var(--accent-neon);
-    padding-left: 16px;
-}
-
-.section-tag {
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    color: var(--accent-silver);
-    letter-spacing: 0.15em;
-}
-
-.section-title {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.section-subtitle {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    max-width: 640px;
-    margin-top: 8px;
-}
-
-/* ===================== NAVBAR ===================== */
-.navbar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
-    background: rgba(5, 5, 5, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--surface-3);
-}
-
-.nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 32px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.nav-logo {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.nav-logo span { color: var(--accent-neon); }
-
-.status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-left: 12px;
-    padding-left: 12px;
-    border-left: 1px solid var(--surface-3);
-}
-
-.status-dot {
-    width: 8px; height: 8px;
-    background: var(--accent-neon);
-    box-shadow: 0 0 8px var(--accent-neon);
-    animation: blink-hard 1.5s infinite;
-}
-
-@keyframes blink-hard {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 4px;
-    align-items: center;
-}
-
-.nav-links a {
-    font-family: var(--font-heading);
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    padding: 8px 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    transition: var(--transition);
-}
-
-.nav-links a:hover { color: var(--text-primary); background: var(--surface-1); }
-.nav-links a.active { color: var(--bg-dominant); background: var(--accent-neon); }
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    padding: 8px;
-    z-index: 1100;
-}
-
-.hamburger span {
-    width: 26px; height: 3px;
-    background: var(--text-primary);
-    transition: var(--transition);
-    display: block;
-}
-
-.hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-.hamburger.active span:nth-child(2) { opacity: 0; }
-.hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-/* ===================== VIEWS & ROUTER ===================== */
-.view {
-    display: none;
-    padding: 64px 0;
-    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.view.active { display: block; }
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===================== HERO ===================== */
-.hero-view {
-    min-height: calc(100vh - 70px);
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 0;
-    padding: 0;
-    border-bottom: 1px solid var(--surface-3);
-}
-
-.hero-left {
-    padding: 80px 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-right: 1px solid var(--surface-3);
-}
-
-.hero-microtag {
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    color: var(--accent-neon);
-    letter-spacing: 0.2em;
-    margin-bottom: 24px;
-    text-transform: uppercase;
-}
-
-.hero-title {
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 700;
-    line-height: 0.9;
-    margin-bottom: 24px;
-}
-
-.hero-subtitle {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    color: var(--accent-silver);
-    margin-bottom: 32px;
-    max-width: 500px;
-    line-height: 1.2;
-}
-
-.hero-tagline {
-    font-size: 1rem;
-    color: var(--text-muted);
-    margin-bottom: 48px;
-    max-width: 400px;
-    border-left: 2px solid var(--surface-3);
-    padding-left: 16px;
-}
-
-.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
-
-.btn {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    padding: 16px 36px;
-    border: 1px solid var(--surface-3);
-    transition: var(--transition);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-.btn-primary { background: var(--accent-neon); border-color: var(--accent-neon); color: var(--bg-dominant); }
-.btn-primary:hover { background: transparent; color: var(--accent-neon); box-shadow: 0 0 15px rgba(255, 69, 0, 0.4); }
-.btn-secondary { border-color: var(--text-primary); color: var(--text-primary); }
-.btn-secondary:hover { background: var(--text-primary); color: var(--bg-dominant); }
-
-.hero-stats {
-    display: flex;
-    gap: 48px;
-    border-top: 1px solid var(--surface-3);
-    padding-top: 32px;
-}
-
-.stat-item .stat-num {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--accent-silver);
-    line-height: 1;
-}
-
-.stat-item .stat-label {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-top: 4px;
-    display: block;
-}
-
-.hero-right {
-    position: relative;
-    background: var(--surface-1);
-    overflow: hidden;
-}
-
-.hero-right::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, var(--bg-dominant) 0%, transparent 40%);
-    z-index: 2;
-}
-
-.hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.8;
-}
-
-.hero-info-label {
-    position: absolute;
-    bottom: 32px; right: 32px;
-    z-index: 3;
-    text-align: right;
-    background: rgba(5,5,5,0.8);
-    padding: 16px;
-    border: 1px solid var(--accent-neon);
-}
-
-.hero-info-label strong {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    display: block;
-}
-
-/* Value Grid (Donde aporto valor) */
-.value-grid {
-    margin-top: 64px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--surface-3);
-    border-top: 1px solid var(--surface-3);
-    border-bottom: 1px solid var(--surface-3);
-}
-
-.value-card {
-    background: var(--bg-dominant);
-    padding: 32px;
-    transition: var(--transition);
-}
-
-.value-card:hover { background: var(--surface-1); }
-
-.value-num {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--accent-neon);
-    margin-bottom: 16px;
-    border-bottom: 1px solid var(--surface-3);
-    padding-bottom: 8px;
-    display: block;
-}
-
-.value-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 12px;
-}
-
-.value-card p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
-
-/* ===================== STACK (Curriculum) ===================== */
-.stack-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--surface-3);
-    border: 1px solid var(--surface-3);
-}
-
-.stack-card {
-    background: var(--bg-dominant);
-    padding: 40px 32px;
-    transition: var(--transition);
-}
-
-.stack-card:hover { background: var(--surface-1); }
-
-.card-num {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--accent-neon);
-    margin-bottom: 24px;
-    border-bottom: 1px solid var(--surface-3);
-    padding-bottom: 8px;
-    width: 100%;
-    display: block;
-}
-
-.stack-card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 24px;
-    color: var(--text-primary);
-}
-
-.tech-list {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-.tech-list li {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    color: var(--accent-silver);
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.tech-list li::before {
-    content: '>';
-    color: var(--accent-neon);
-    font-weight: 700;
-}
-
-/* ===================== ABOUT (Coaches) ===================== */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 32px;
-    align-items: start;
-}
-
-.about-sidebar {
-    position: sticky;
-    top: 90px;
-    border: 1px solid var(--surface-3);
-    background: var(--surface-1);
-}
-
-.about-img-wrap {
-    height: 400px;
-    overflow: hidden;
-    border-bottom: 1px solid var(--surface-3);
-}
-
-.about-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
-
-.about-sidebar-info { padding: 24px; }
-.about-sidebar-info h3 { font-size: 1.5rem; margin-bottom: 4px; }
-.about-sidebar-info span { font-family: var(--font-mono); color: var(--accent-neon); font-size: 0.85rem; }
-
-.about-modules {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--surface-3);
-    border: 1px solid var(--surface-3);
-}
-
-.module-card {
-    background: var(--bg-dominant);
-    padding: 32px;
-    transition: var(--transition);
-}
-
-.module-card:hover { background: var(--surface-1); }
-
-.module-tag {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--accent-neon);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: block;
-}
-
-.module-card h4 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-}
-
-.module-card p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-}
-
-.module-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.module-list li {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    padding: 4px 8px;
-    border: 1px solid var(--surface-3);
-    color: var(--text-primary);
-    text-transform: uppercase;
-}
-
-/* ===================== PROJECTS (Stories) ===================== */
-.projects-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: var(--surface-3);
-    border-top: 1px solid var(--surface-3);
-    border-bottom: 1px solid var(--surface-3);
-}
-
-.project-item {
-    background: var(--bg-dominant);
-    padding: 32px;
-    display: grid;
-    grid-template-columns: 100px 1fr 1fr 150px;
-    gap: 32px;
-    align-items: center;
-    transition: var(--transition);
-}
-
-.project-item:hover { background: var(--surface-1); }
-
-.project-num {
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    color: var(--surface-3);
-    font-weight: 700;
-}
-
-.project-item:hover .project-num { color: var(--accent-neon); }
-
-.project-name {
-    font-size: 1.5rem;
-    color: var(--text-primary);
-}
-
-.project-desc {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
-
-.project-tech {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-end;
-}
-
-.project-tech .badges {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-}
-
-.project-tech .badge {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    padding: 2px 6px;
-    border: 1px solid var(--accent-silver);
-    color: var(--accent-silver);
-    text-transform: uppercase;
-}
-
-.project-link {
-    font-family: var(--font-heading);
-    color: var(--accent-neon);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-/* ===================== CONTACT (Book Trial) ===================== */
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: 1px solid var(--surface-3);
-}
-
-.contact-left {
-    padding: 64px;
-    border-right: 1px solid var(--surface-3);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.contact-left h2 {
-    font-size: 3.5rem;
-    margin-bottom: 24px;
-    line-height: 0.9;
-}
-
-.contact-left p {
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    margin-bottom: 32px;
-    max-width: 400px;
-}
-
-.contact-cta {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    color: var(--accent-neon);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    display: block;
-    padding: 16px 0;
-    border-top: 1px solid var(--surface-3);
-    width: 100%;
-}
-
-.contact-right {
-    background: var(--surface-1);
-    padding: 64px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 24px;
-}
-
-.contact-link {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    padding: 24px;
-    background: var(--bg-dominant);
-    border: 1px solid var(--surface-3);
-    transition: var(--transition);
-}
-
-.contact-link:hover { border-color: var(--accent-neon); transform: translateX(8px); }
-
-.contact-link .icon {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: var(--accent-neon);
-    font-weight: 700;
-}
-
-.contact-link .info .label {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 4px;
-}
-
-.contact-link .info .value {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    color: var(--text-primary);
-}
-
-/* ===================== FOOTER ===================== */
-footer {
-    border-top: 1px solid var(--surface-3);
-    padding: 32px 0;
-    background: var(--bg-dominant);
-    flex-shrink: 0;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.footer-logo { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; }
-.footer-copy { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
-
-/* ===================== RESPONSIVE ===================== */
-@media (max-width: 1024px) {
-    .hero-view { grid-template-columns: 1fr; }
-    .hero-left { padding: 64px 32px; border-right: none; border-bottom: 1px solid var(--surface-3); }
-    .hero-right { height: 50vh; }
-    .value-grid { grid-template-columns: 1fr; }
-    .stack-grid { grid-template-columns: 1fr; }
-    .about-grid { grid-template-columns: 1fr; }
-    .about-sidebar { position: static; }
-    .about-modules { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .contact-left { border-right: none; border-bottom: 1px solid var(--surface-3); padding: 48px 32px; }
-    .contact-right { padding: 48px 32px; }
-}
-
-@media (max-width: 720px) {
-    .container { padding: 0 24px; }
-    .nav-links {
-        position: fixed;
-        top: 0; right: -100%;
-        height: 100vh;
-        width: 80%;
-        max-width: 320px;
-        background: var(--surface-1);
-        border-left: 1px solid var(--surface-3);
-        flex-direction: column;
-        justify-content: flex-start;
-        padding: 100px 24px 30px;
-        gap: 8px;
-        transition: right 0.3s ease;
-        z-index: 1050;
-    }
-    .nav-links.active { right: 0; }
-    .nav-links li { width: 100%; }
-    .nav-links a { display: block; padding: 14px 16px; font-size: 1.2rem; }
-    
-    .hamburger { display: flex; }
-    .status-badge { display: none; }
-    
-    .hero-stats { flex-direction: column; gap: 24px; }
-    .project-item { grid-template-columns: 1fr; gap: 16px; }
-    .project-tech { align-items: flex-start; }
-    .hero-cta { flex-direction: column; align-items: stretch; }
-    .btn { justify-content: center; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-}
-</style>
+<link rel="stylesheet" href="./css/styles.css">
+<script src="./js/app.js" defer></script>
 </head>
 
 <body>
@@ -818,14 +70,14 @@ footer {
                         <span class="stat-label">Certificaciones</span>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-num">?</div>
+                        <div class="stat-num">3</div>
                         <span class="stat-label">Proyectos</span>
                     </div>
                 </div>
             </div>
             <div class="hero-right">
                 <!-- Imagen representativa de código/tecnología con filtro B&N -->
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop" alt="Código y seguridad" class="hero-img">
+                <img src="./images/ChatGPT Image 30 sept 2026, 08_41_48 a.m..png" alt="Código y seguridad" class="hero-img">
                 <div class="hero-info-label">
                     <strong>DISPONIBLE PARA COLABORAR</strong>
                 </div>
@@ -882,24 +134,26 @@ footer {
                     <span class="card-num">02 // BACKEND</span>
                     <h3>Servidores</h3>
                     <ul class="tech-list">
-                        <li>Node.js</li>
-                        <li>Express</li>
+                        <li>Node.JS</li>
+                        <li>Express.JS</li>
                         <li>Python</li>
                         <li>C++</li>
+                        <li>Strapi (CMS Headless)</li>
                     </ul>
                 </div>
                 <div class="stack-card">
                     <span class="card-num">03 // DATABASES</span>
-                    <h3>Bases de Datos</h3>
+                    <h3>PERSISTENCIA Y GESTIÓN DE DATOS</h3>
                     <ul class="tech-list">
                         <li>MySQL</li>
                         <li>PostgreSQL</li>
                         <li>MongoDB</li>
+                        <li>MongoDB</li>
                     </ul>
                 </div>
                 <div class="stack-card">
-                    <span class="card-num">04 // DEVOPS</span>
-                    <h3>Despliegue</h3>
+                    <span class="card-num">04 // DEVOPS & CLOUD</span>
+                    <h3>DESPLIEGUE, INFRAESTRUCTURA Y REDES</h3>
                     <ul class="tech-list">
                         <li>Docker</li>
                         <li>Git</li>
@@ -907,13 +161,45 @@ footer {
                 </div>
 
                 <div class="stack-card">
-                    <span class="card-num">06 // AI</span>
-                    <h3>Inteligencia Artificial</h3>
+                    <span class="card-num">05 // AI & DATA SCIENCE</span>
+                    <h3>INTELIGENCIA ARTIFICIAL Y ANALÍTICA</h3>
                     <ul class="tech-list">
-                        <li>OpenAI</li>
-                        <li>TensorFlow</li>
-                        <li>Pandas</li>
-                        <li>Scikit-learn</li>
+                        <li>OPENAI API (GPT-4)</li>
+                        <li>GOOGLE GEMINI API</li>
+                        <li>ANTHROPIC CLAUDE API</li>
+                        <li>PANDAS</li>
+                        <li>NUMPY</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <span class="card-num">06 // TESTING & SECURITY</span>
+                    <h3>CALIDAD, PRUEBAS Y SEGURIDAD</h3>
+                    <ul class="tech-list">
+                        <li>POSTMAN</li>
+                        <li>INSOMNIA</li>
+                        <li>JWT</li>
+                        <li>BCRYPT</li>
+                        <li>Bruno</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <span class="card-num">06 // TOOLS & PRODUCTIVITY</span>
+                    <h3>DISEÑO, HERRAMIENTAS Y OFIMÁTICA</h3>
+                    <ul class="tech-list">
+                        <li><img src="./images/Word.png">MICROSOFT WORD</li>
+                        <li><img src="./images/powerpoint.png">MICROSOFT POWERPOINT</li>
+                        <li><img src="./images/excel.png">MICROSOFT EXCEL</li>
+                        <li><img src="./images/docs.png">Google Docs</li>
+                        <li><img src="./images/slides.png">Google Slides</li>
+                        <li><img src="./images/sheets.png">Google Sheets</li>
+                        <li><img src="./images/forms.png">Google Forms</li>
+                        <li><img src="./images/drive.png">Google Drive</li>
+                        <li><img src="./images/calendar.png">Google Calendar</li>
+                        <li><img src="./images/meet.png">Google Meet</li>
+                        <li><img src="./images/figma.png">Figma</li>
+                        <li><img src="./images/vscode.png">VS Code</li>
+                        <li><img src="./images/notion.png">Notion</li>
+                        <li><img src="./images/canva.png">Canva</li>
                     </ul>
                 </div>
             </div>
@@ -932,7 +218,7 @@ footer {
             <div class="about-grid">
                 <aside class="about-sidebar">
                     <div class="about-img-wrap">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=600&auto=format&fit=crop" alt="Maria José working">
+                        <img src="./images/ChatGPT Image 30 sept 2026, 07_46_45 a.m..png" alt="Maria José working">
                     </div>
                     <div class="about-sidebar-info">
                         <h3>Dulce Alexandra Morales Ramírez</h3>
@@ -965,20 +251,20 @@ footer {
                     <div class="module-card">
                         <span class="module-tag">03 // EN FORMACIÓN</span>
                         <h4>Aprendizaje Continuo</h4>
-                        <p>Actualmente sigo fortaleciendo mis habilidades como desarrolladora Full 
-                            Stack, especialmente en backend. Me interesa seguir aprendiendo y convertir 
-                            la teoría en proyectos reales.</p>
+                        <p>Actualmente perfeccionando mis habilidades en desarrollo de software, integración de APIs y herramientas digitales. Mi stack de aprendizaje actual:</p>
                         <ul class="module-list">
                             <li>JavaScript</li>
                             <li>Python</li>
                             <li>Docker</li>
-                            <li>Pentesting</li>
+                            <li>HTML & CSS</li>
+                            <li>POSTMAN / APIs</li>
+                            <li>IA & HERRAMIENTAS DEV</li>
                         </ul>
                     </div>
                     <div class="module-card">
-                        <span class="module-tag">04 // CYBERSECURITY & DEV</span>
+                        <span class="module-tag">04 //TECNOLOGÍA & EDUCACIÓN</span>
                         <h4>Mi Filosofía</h4>
-                        <p>El código no solo debe funcionar, debe ser seguro. Integro prácticas de ciberseguridad en cada fase del ciclo de desarrollo de software (DevSecOps).</p>
+                        <p>El código debe ser funcional, estructurado y accesible. Integro herramientas modernas y aprendizaje continuo para resolver problemas de forma eficiente y creativa.</p>
                     </div>
                 </div>
             </div>
@@ -998,93 +284,54 @@ footer {
                 <div class="project-item">
                     <div class="project-num">01</div>
                     <div>
-                        <h3 class="project-name">Sistema Experto</h3>
-                        <p class="project-desc">Diagnóstico de PC basado en lógica difusa e inferencia.</p>
+                        <h3 class="project-name">Campus Parking</h3>
+                        <p class="project-desc">Sistema backend relacional y marco de agregación analítica</p>
                     </div>
-                    <p class="project-desc hide-mobile">Sistema que sugiere soluciones técnicas según síntomas.</p>
+                    <p class="project-desc hide-mobile"> Utilizada para gestión y monitoreo de parqueos multi-sede.</p>
                     <div class="project-tech">
                         <div class="badges">
-                            <span class="badge">Python</span>
-                            <span class="badge">CLI</span>
+                            <span class="badge">MongoDB</span>
+                            <span class="badge">Docker</span>
+                            <span class="badge">JavaScript</span>
                         </div>
-                        <a href="#" class="project-link">Ver Repositorio →</a>
+                        <a href="https://github.com/DulceMR17/proyecto-parqueaderos-multisede.git" class="project-link">Ver Repositorio →</a>
                     </div>
                 </div>
                 <div class="project-item">
                     <div class="project-num">02</div>
                     <div>
-                        <h3 class="project-name">EduTrack</h3>
-                        <p class="project-desc">Plataforma de gestión académica y seguimiento.</p>
+                        <h3 class="project-name">Simulación de Plataforma de Gestión de Eventos y Conciertos</h3>
+                        <p class="project-desc">Aplicación web interactiva para la consulta de eventos musicales</p>
                     </div>
-                    <p class="project-desc hide-mobile">Sistema para estudiantes con dashboard analítico.</p>
+                    <p class="project-desc hide-mobile">Utiliza filtrado de fechas y 
+                            simulación de compra de boletos mediante manipulación dinámica del DOM.</p>
                     <div class="project-tech">
                         <div class="badges">
                             <span class="badge">JavaScript</span>
-                            <span class="badge">Node.js</span>
+                            <span class="badge">HTML</span>
+                            <span class="badge">CSS</span>
                         </div>
-                        <a href="#" class="project-link">Ver Repositorio →</a>
+                        <a href="https://github.com/DulceMR17/proyecto-gestion-conciertos.git" class="project-link">Ver Repositorio →</a>
                     </div>
                 </div>
                 <div class="project-item">
                     <div class="project-num">03</div>
                     <div>
-                        <h3 class="project-name">Gestión de Hotel</h3>
-                        <p class="project-desc">Sistema de reservas y administración.</p>
+                        <h3 class="project-name">Simulación de Sucursal Virtual ACME-Bank</h3>
+                        <p class="project-desc">Sistema de gestión bancaria basado en consola para Acme Bank, </p>
                     </div>
-                    <p class="project-desc hide-mobile">Control de habitaciones, clientes y facturación.</p>
+                    <p class="project-desc hide-mobile">Diseñado bajo el paradigma de 
+                            Programación Orientada a Objetos (POO) pura, principios SOLID, patrones de diseño de software y conexión a MongoDB .</p>
                     <div class="project-tech">
                         <div class="badges">
-                            <span class="badge">Java</span>
-                            <span class="badge">MySQL</span>
+                            <span class="badge">Node.JS</span>
+                            <span class="badge">MongoDB</span>
+                            <span class="badge">Dotenv</span>
+                            <span class="badge">CLI</span>
                         </div>
-                        <a href="#" class="project-link">Ver Repositorio →</a>
+                        <a href="https://github.com/DulceMR17/sucursal-virtual-acme-bank.git" class="project-link">Ver Repositorio →</a>
                     </div>
-                </div>
-                <div class="project-item">
-                    <div class="project-num">04</div>
-                    <div>
-                        <h3 class="project-name">ForceTech</h3>
-                        <p class="project-desc">Plataforma web para gimnasios.</p>
-                    </div>
-                    <p class="project-desc hide-mobile">Gestión de usuarios, rutinas y progreso físico.</p>
-                    <div class="project-tech">
-                        <div class="badges">
-                            <span class="badge">HTML</span>
-                            <span class="badge">PHP</span>
-                        </div>
-                        <a href="#" class="project-link">Ver Repositorio →</a>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div class="project-num">05</div>
-                    <div>
-                        <h3 class="project-name">Inventory Sync</h3>
-                        <p class="project-desc">Sincronizador de inventarios en tiempo real.</p>
-                    </div>
-                    <p class="project-desc hide-mobile">API para conectar ventas físicas y digitales.</p>
-                    <div class="project-tech">
-                        <div class="badges">
-                            <span class="badge">Node.js</span>
-                            <span class="badge">Redis</span>
-                        </div>
-                        <a href="#" class="project-link">Ver Repositorio →</a>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <div class="project-num">06</div>
-                    <div>
-                        <h3 class="project-name">Gestor Cultural</h3>
-                        <p class="project-desc">Dashboard para organizaciones culturales.</p>
-                    </div>
-                    <p class="project-desc hide-mobile">Administración de eventos, asistentes y recursos.</p>
-                    <div class="project-tech">
-                        <div class="badges">
-                            <span class="badge">React</span>
-                            <span class="badge">PostgreSQL</span>
-                        </div>
-                        <a href="#" class="project-link">Ver Repositorio →</a>
-                    </div>
-                </div>
+                </div>                                             
             </div>
         </div>
     </div>
@@ -1141,63 +388,6 @@ footer {
         </div>
     </div>
 </footer>
-
-<script>
-/* ===================== SPA ROUTER (Hash-based) ===================== */
-const routes = {
-    '/': 'view-home',
-    '/stack': 'view-stack',
-    '/about': 'view-about',
-    '/projects': 'view-projects',
-    '/contact': 'view-contact'
-};
-
-function router() {
-    let hash = window.location.hash.replace('#', '');
-    if (hash === '' || hash === '/') hash = '/';
-
-    const viewId = routes[hash] || 'view-home';
-    const views = document.querySelectorAll('.view');
-    
-    views.forEach(v => v.classList.remove('active'));
-    document.getElementById(viewId).classList.add('active');
-
-    window.scrollTo({ top: 0, behavior: 'instant' });
-
-    document.querySelectorAll('.nav-links a').forEach(a => {
-        a.classList.toggle('active', a.getAttribute('data-route') === hash);
-    });
-}
-
-window.addEventListener('hashchange', router);
-window.addEventListener('DOMContentLoaded', router);
-
-/* ===================== NAV: HAMBURGER TOGGLE ===================== */
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-
-hamburger.addEventListener('click', () => {
-    const isActive = hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-});
-
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-    });
-});
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-    }
-});
-</script>
 
 </body>
 </html>
