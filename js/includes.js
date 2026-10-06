@@ -1,12 +1,14 @@
+const prefix = window.location.pathname.includes('/pages/') ? '../' : './';
+
 const headStyles = [
     "https://fonts.googleapis.com",
     "https://fonts.gstatic.com",
     "https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;700&display=swap",
-    "../css/base.css",
-    "../css/layout.css",
-    "../css/navbar.css",
-    "../css/footer.css",
-    "../css/responsive.css"
+    `${prefix}css/base.css`,
+    `${prefix}css/layout.css`,
+    `${prefix}css/navbar.css`,
+    `${prefix}css/footer.css`,
+    `${prefix}css/responsive.css`
 ];
 
 function loadStyles() {
