@@ -1,0 +1,83 @@
+/* ===================== CONTACT (Book Trial) ===================== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--surface-3);
+}
+
+.contact-left {
+    padding: 64px;
+    border-right: 1px solid var(--surface-3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-left h2 {
+    font-size: 3.5rem;
+    margin-bottom: 24px;
+    line-height: 0.9;
+}
+
+.contact-left p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+    max-width: 400px;
+}
+
+.contact-cta {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--accent-neon);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    padding: 16px 0;
+    border-top: 1px solid var(--surface-3);
+    width: 100%;
+}
+
+.contact-right {
+    background: var(--surface-1);
+    padding: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    background: var(--bg-dominant);
+    border: 1px solid var(--surface-3);
+    transition: var(--transition);
+}
+
+.contact-link:hover { border-color: var(--accent-neon); transform: translateX(8px); }
+
+.contact-link .icon {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--accent-neon);
+    font-weight: 700;
+}
+
+.contact-link .info .label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.contact-link .info .value {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
