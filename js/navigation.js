@@ -1,7 +1,7 @@
 function getCurrentPage() {
   const path = window.location.pathname.replaceAll('\\', '/');
   if (path.endsWith('/aboutme.html')) return 'about';
-  if (path.endsWith('/stack.htmsl')) return 'stack';
+  if (path.endsWith('/stack.html')) return 'stack';
   if (path.endsWith('/projects.html')) return 'projects';
   if (path.endsWith('/contact.html')) return 'contact';
   if (path.endsWith('/home.html')) return 'home';
@@ -12,7 +12,7 @@ function configureNavigation() {
   const page = getCurrentPage();
   const fromPages = window.location.pathname.includes('/pages/');
   const links = {
-    home: fromPages ? 'home.html' : 'pages/home.html',
+    home: fromPages ? '../index.html' : 'index.html',
     about: fromPages ? 'aboutme.html' : 'pages/aboutme.html',
     stack: fromPages ? 'stack.html' : 'pages/stack.html',
     projects: fromPages ? 'projects.html' : 'pages/projects.html',

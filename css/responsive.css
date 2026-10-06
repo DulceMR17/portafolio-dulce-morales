@@ -4,10 +4,8 @@
     .hero-left { padding: 64px 32px; border-right: none; border-bottom: 1px solid var(--surface-3); }
     .hero-right { height: 50vh; }
     .value-grid { grid-template-columns: 1fr; }
-    .stack-grid { grid-template-columns: 1fr; }
-    .about-grid { grid-template-columns: 1fr; }
-    .about-sidebar { position: static; }
     .about-modules { grid-template-columns: 1fr; }
+    .about-sidebar { position: static; }
     .contact-grid { grid-template-columns: 1fr; }
     .contact-left { border-right: none; border-bottom: 1px solid var(--surface-3); padding: 48px 32px; }
     .contact-right { padding: 48px 32px; }
@@ -15,6 +13,7 @@
 
 @media (max-width: 720px) {
     .container { padding: 0 24px; }
+    .about-grid { grid-template-columns: 1fr; row-gap: 32px; }
     .nav-links {
         position: fixed;
         top: 0; right: -100%;

@@ -37,6 +37,7 @@
 .project-desc {
     font-size: 0.9rem;
     color: var(--text-muted);
+    text-align: justify;
 }
 
 .project-tech {

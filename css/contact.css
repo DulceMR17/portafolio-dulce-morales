@@ -17,7 +17,7 @@
 .contact-left h2 {
     font-size: 3.5rem;
     margin-bottom: 24px;
-    line-height: 0.9;
+    line-height: 1.20;
 }
 
 .contact-left p {
@@ -25,6 +25,7 @@
     font-size: 1.1rem;
     margin-bottom: 32px;
     max-width: 400px;
+    text-align: justify;
 }
 
 .contact-cta {

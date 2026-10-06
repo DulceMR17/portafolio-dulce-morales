@@ -28,7 +28,7 @@
 .hero-title {
     font-size: clamp(3rem, 7vw, 6rem);
     font-weight: 700;
-    line-height: 0.9;
+    line-height: 1.15;
     margin-bottom: 24px;
 }
 
@@ -46,6 +46,7 @@
     color: var(--text-muted);
     margin-bottom: 48px;
     max-width: 400px;
+    text-align: justify;
     border-left: 2px solid var(--surface-3);
     padding-left: 16px;
 }
