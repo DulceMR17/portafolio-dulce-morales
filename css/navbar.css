@@ -1,0 +1,96 @@
+/* ===================== NAVBAR ===================== */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--surface-3);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-logo span { color: var(--accent-neon); }
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-left: 12px;
+    padding-left: 12px;
+    border-left: 1px solid var(--surface-3);
+}
+
+.status-dot {
+    width: 8px; height: 8px;
+    background: var(--accent-neon);
+    box-shadow: 0 0 8px var(--accent-neon);
+    animation: blink-hard 1.5s infinite;
+}
+
+@keyframes blink-hard {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 4px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: var(--transition);
+}
+
+.nav-links a:hover { color: var(--text-primary); background: var(--surface-1); }
+.nav-links a.active { color: var(--bg-dominant); background: var(--accent-neon); }
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    z-index: 1100;
+}
+
+.hamburger span {
+    width: 26px; height: 3px;
+    background: var(--text-primary);
+    transition: var(--transition);
+    display: block;
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }

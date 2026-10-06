@@ -1,0 +1,24 @@
+/* Estructura general compartida */
+main { padding-top: 70px; flex: 1 0 auto; }
+
+.view, .page-view {
+    padding: 64px 0;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 40px;
+    border-left: 4px solid var(--accent-neon);
+    padding-left: 16px;
+}
+.section-tag { font-family: var(--font-heading); font-size: 0.85rem; color: var(--accent-silver); letter-spacing: 0.15em; }
+.section-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; color: var(--text-primary); }
+.section-subtitle { color: var(--text-muted); font-size: 0.95rem; max-width: 640px; margin-top: 8px; }
